@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_214623) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_18_163410) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "billings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "card_number", null: false
+    t.integer "type_card", default: 0, null: false
+    t.string "csv", null: false
+    t.date "expiration", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_billings_on_user_id"
+  end
 
   create_table "line_items", force: :cascade do |t|
     t.bigint "order_id", null: false
@@ -29,6 +40,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_214623) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "billing_id"
+    t.bigint "shipping_address_id"
+    t.index ["billing_id"], name: "index_orders_on_billing_id"
+    t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
     t.index ["status"], name: "index_orders_on_status"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -46,6 +61,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_214623) do
     t.index ["api_url", "external_id"], name: "index_products_on_api_url_and_external_id", unique: true
   end
 
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "address", null: false
+    t.string "country", null: false
+    t.string "state", null: false
+    t.string "city", null: false
+    t.string "zipcode", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shipping_addresses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
@@ -55,7 +82,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_214623) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "billings", "users"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
+  add_foreign_key "orders", "billings"
+  add_foreign_key "orders", "shipping_addresses"
   add_foreign_key "orders", "users"
+  add_foreign_key "shipping_addresses", "users"
 end
