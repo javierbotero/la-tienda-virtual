@@ -1,0 +1,6 @@
+<ul>
+  <li><%= link_to 'Log out', logout_path %></li>
+  <% if @curren_order %>
+  <li><%= link_to 'Cart', user_order_path(@curren_order, @curren_order) %></li>
+  <% end %>
+<ul>

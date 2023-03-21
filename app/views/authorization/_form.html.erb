@@ -1,0 +1,9 @@
+<%= form_with url: url, scope: :user do |form| %>
+  <%= form.label :username, 'Username' %>
+  <%= form.text_field :username %>
+
+  <%= form.label :email, 'Email' %>
+  <%= form.text_field :email %>
+
+  <%= form.submit submit %>
+<% end %>

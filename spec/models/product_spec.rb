@@ -5,7 +5,7 @@ RSpec.describe Product, type: :model do
     should define_enum_for(:api_url)
       .with_values({
         'https://fakestoreapi.com/products' => 0,
-        'https://dummyjson.com/products/' => 1
+        'https://dummyjson.com/products' => 1
       })
   end
 

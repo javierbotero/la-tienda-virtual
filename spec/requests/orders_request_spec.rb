@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Orders', type: :request do
   let(:user) { create(:user) }
   let(:bed) { create(:product, title: 'bed', price: '125.50') }
-  let(:couch) { create(:product, title: 'bed', price: '135.50') }
+  let(:couch) { create(:product, title: 'couch', price: '135.50') }
 
   before do
     post login_user_url,

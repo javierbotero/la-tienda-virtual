@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <header>
+      <%= render "#{@current_user ? 'shared/menu' : 'shared/menu_auth' }" %>
+    </header>
+    <nav>
+    </nav>
     <%= yield %>
   </body>
 </html>

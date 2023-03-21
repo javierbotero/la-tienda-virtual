@@ -7,6 +7,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'support/shoulda_support'
+require 'capybara/rails'
+require 'selenium-webdriver'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -65,3 +67,5 @@ RSpec.configure do |config|
   # Adds factory bot methods
   config.include FactoryBot::Syntax::Methods
 end
+
+Capybara.javascript_driver = :selenium_chrome_headless

@@ -1,5 +1,6 @@
 class AuthorizationController < ApplicationController
   skip_before_action :authorize_user, except: [:logout, :destroy]
+  skip_before_action :current_order
 
   def login; end
 
@@ -15,9 +16,7 @@ class AuthorizationController < ApplicationController
     end
   end
 
-  def logout; end
-
-  def destroy
+  def logout
     session.delete(:user_id)
     @current_user = nil
 

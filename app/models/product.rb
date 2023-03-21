@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   enum api_url: {
     'https://fakestoreapi.com/products' => 0,
-    'https://dummyjson.com/products/' => 1
+    'https://dummyjson.com/products' => 1
   }
 
   scope :sort_by_title_price, -> { order(:title, :price) }
