@@ -10,6 +10,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @order = current_order.nil? ? Order.new : current_order
+    @order.line_items.build
   end
 
   private

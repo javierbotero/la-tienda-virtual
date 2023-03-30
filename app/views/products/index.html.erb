@@ -1,5 +1,6 @@
 <h1>Products</h1>
-<ul>
+<%= render 'form' %>
+<ul class='products'>
   <% @products.each do |product| %>
     <li><%= link_to product.title, product_url(product) %></li>
   <% end %>

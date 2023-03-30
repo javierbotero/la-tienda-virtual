@@ -12,6 +12,11 @@
 
   <body>
     <header>
+      <% flash.each do |type, message| %>
+        <div class="<%= flash_css_classes(type) %>">
+          <%= message %>
+        </div>
+      <% end %>
       <%= render "#{@current_user ? 'shared/menu' : 'shared/menu_auth' }" %>
     </header>
     <nav>

@@ -66,6 +66,19 @@ RSpec.configure do |config|
   
   # Adds factory bot methods
   config.include FactoryBot::Syntax::Methods
+
+  config.before(:each, type: :feature) do
+    Capybara.default_max_wait_time = 5 # wait up to 5 seconds for elements to appear
+  end
+end
+
+Capybara.server = :puma
+Capybara.register_driver :selenium_chrome_headless do |app|
+  options = ::Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-shm-usage')
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 Capybara.javascript_driver = :selenium_chrome_headless

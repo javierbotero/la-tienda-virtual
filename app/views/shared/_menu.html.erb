@@ -1,6 +1,8 @@
 <ul>
   <li><%= link_to 'Log out', logout_path %></li>
-  <% if @curren_order %>
-  <li><%= link_to 'Cart', user_order_path(@curren_order, @curren_order) %></li>
-  <% end %>
-<ul>
+  <li class="<%= @current_order.present? ? 'd-block' : 'd-none' %>" id="li-cart">
+    <% if @current_order.present? %>
+      <%= link_to('Cart', user_order_path(@current_user, @current_order)) %>
+    <% end %>
+  </li>
+</ul>

@@ -9,6 +9,7 @@ class AuthorizationController < ApplicationController
 
     if @user.present?
       session[:user_id] = @user.id
+      # debugger
       redirect_to :root
     else
       flash.now[:error] = "Invalid credentials"

@@ -1,0 +1,12 @@
+<%= form_with url: products_path, scope: :products, class: 'filter-products', method: :get do |form| %>
+  <%= form.label :title, 'By name' %>
+  <%= form.text_field :title %>
+
+  <%= form.label :min, 'min' %>
+  <%= form.text_field :min %>
+
+  <%= form.label :max, 'max' %>
+  <%= form.text_field :max %>
+
+  <%= form.submit 'filter' %>
+<% end %>
