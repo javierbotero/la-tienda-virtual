@@ -12,4 +12,6 @@ RSpec.describe Order, type: :model do
     should define_enum_for(:status).
       with_values({ open: 0, pending: 1, confirmed: 2, canceled: 3 })
   end
+
+  let(:order) { build(:order) }
 end

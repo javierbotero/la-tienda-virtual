@@ -36,7 +36,6 @@ const cleanMessage = (message) => {
 }
 
 const activateCart = (user_id, order_id) => {
-  debugger;
   const li = document.getElementById('li-cart');
   const link = document.createElement('a');
   link.href = `/users/${user_id}/orders/${order_id}`;

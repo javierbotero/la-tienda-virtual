@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+  it { should have_many(:line_items) }
   it do
     should define_enum_for(:api_url)
       .with_values({

@@ -18,4 +18,11 @@ module ProducsHelper
       end.join.html_safe
     end
   end
+
+  # def edit_or_new(order, line_item, product)
+  #   if order.id.nil?
+  #     'd-block'
+  #   elsif order.line_items.include?{ |li| li.product_id == product.id }
+  #     line_item.product_id == product.id ? 'd-block' : 'd-none'
+  # end
 end

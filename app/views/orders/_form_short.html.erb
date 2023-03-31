@@ -1,12 +1,12 @@
-<%= form_with(model: [user, order], format: 'json', html: { 'data-product-target' => 'form' }) do |form| %>
+<%= form_with(model: [@current_user, @order], format: 'json', html: { 'data-product-target' => 'form' }) do |form| %>
   <div class="line-items" data-product-target="lineItems">
-    <%= form.fields_for :line_items do |addresses_form| %>
-      <%= addresses_form.hidden_field :product_id, value: product.id %>
+    <%= form.fields_for :line_items, @line_items do |line_item| %>
       <div>
+        <%= line_item.hidden_field :product_id, value: line_item.object.product_id %>
         <div class="stock-error" data-product-target="stockError"></div>
-        <%= addresses_form.label :quantity, 'Quantity' %>
+        <%= line_item.label :quantity, 'Quantity' %>
         <div>
-          <%= addresses_form.text_field :quantity, readonly: true, value: 0, class: 'quantity', data: { "product-target" => "quantity" } %>
+          <%= line_item.text_field :quantity, readonly: true, value: line_item.object.quantity, class: 'quantity', data: { "product-target" => "quantity" } %>
           <div>
             <div class="increment" data-action="click->product#increment"><i class="fa-solid fa-caret-up"></i></div>
             <div class="decrement" data-action="click->product#decrement"><i class="fa-solid fa-caret-down"></i></div>

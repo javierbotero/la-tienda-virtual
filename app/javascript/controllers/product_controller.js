@@ -28,7 +28,7 @@ export default class extends Controller {
     const quantity = parseInt(this.quantityTarget.value);
     const result = quantity + 1;
 
-    if (result > this.stockTarget.innerHTML) {
+    if (result > parseInt(this.stockTarget.innerHTML)) {
       this.stockErrorTarget.innerHTML = 'Not available quantity';
     } else {
       this.totalTarget.innerHTML = result * this.priceTarget.innerHTML;
@@ -41,10 +41,11 @@ export default class extends Controller {
     const quantity = parseInt(this.quantityTarget.value);
     const result = quantity - 1;
 
-    if (result > this.stockTarget.innerHTML) {
+    if (result > parseInt(this.stockTarget.innerHTML)) {
       this.stockErrorTarget.innerHTML = 'Not available quantity';
       this.quantityTarget.value = result;
     } else if (result >= 0) {
+      this.stockErrorTarget.innerHTML = '';
       this.totalTarget.innerHTML = result * this.priceTarget.innerHTML;
       this.quantityTarget.value = result;
     }
@@ -54,18 +55,22 @@ export default class extends Controller {
     event.preventDefault();
     cleanMessage(this.messageTarget);
 
+    if (parseInt(this.quantityTarget.value) > parseInt(this.stockTarget.innerHTML)) {
+      this.stockErrorTarget.innerHTML = 'Not available quantity';
+      return;
+    }
+
     const form = this.formTarget
     const form_data = this.formData();
-    const is_creating = /\/orders\/\d+/.test(form_data.action);
-    const [user_id] = form_data.action.match(/\d+/g);
+    const is_editing = /\/orders\/\d+/.test(form.action);
     const result_json = await sendRequest(form, form_data);
 
     if (result_json['success'] === false) {
       displayErrors(result_json['errors'], this.messageTarget);
     } else {
-      const message = is_creating ? 'Added to the cart!' : 'Cart updated';
+      const message = is_editing ? 'Cart updated' : 'Added to the cart!';
       displayMessage(message, this.messageTarget);
-      if (is_creating) { activateCart(user_id, result_json['order_id']); }
+      if (!is_editing) { activateCart(result_json['order']['user_id'], result_json['order']['id']); }
     }
   }
 

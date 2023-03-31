@@ -6,8 +6,7 @@ class OrdersController < ApplicationController
       if @order.save
         session[:order_id] = @order.id
         format.json do
-          render json: { success: true, order_id: @order.id },
-                 status: :created
+          render json: { success: true, order: @order }, status: :created
         end
       else
         format.json do
@@ -23,9 +22,14 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update(order_params)
-        format.json { render json: { success: true, order: @order }, status: :ok }
+        format.json do
+          render json: { success: true, order: @order }, status: :ok
+        end
       else
-        format.json { render json: { success: false, error: @order.errors.full_messages }, status: :unprocessable_entity }
+        format.json do
+          render json: { success: false, errors: @order.errors.full_messages },
+            status: :unprocessable_entity
+        end
       end
     end
   end
@@ -43,6 +47,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).
-      permit(:status, line_items_attributes: [:product_id, :quantity])
+      permit(:status, line_items_attributes: [:product_id, :quantity, :id])
   end
 end
