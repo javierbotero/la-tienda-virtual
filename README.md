@@ -1,24 +1,21 @@
-# README
+# La Tienda Virtual (Million and UP test)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sigue estos pasos para correr esta app localmente, (debes haber clonado primero este repo para seguir estos pasos y estar en la carpeta de la app en tu terminal):
 
-Things you may want to cover:
+```ruby
+bundle install
+rails db:create
+rails db:migrate
+rails init:products
+rails server
+```
+Debes tener postgres instalado en tu maquina, muy importante haber corrido ```ruby
+rails init:products
+ ```
+ para tener los productos de las APIs
 
-* Ruby version
+Gracias!
 
-* System dependencies
+## Show your support
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Give a ⭐️ if you like this project!
