@@ -35,12 +35,19 @@ const cleanMessage = (message) => {
   message.textContent = '';
 }
 
-const activateCart = (user_id, order_id) => {
+const activateCart = () => {
   const li = document.getElementById('li-cart');
   const link = document.createElement('a');
-  link.href = `/users/${user_id}/orders/${order_id}`;
+
+  link.href = "/products";
   link.textContent = "Cart";
+  link.classList.add('nav-link');
+  link.classList.add('text-secondary');
+
   li.appendChild(link);
+  li.classList.remove('d-none')
+  li.classList.add('d-block');
+  li.classList.add('nav-item');
 }
 
 export { sendRequest, displayErrors, displayMessage, cleanMessage, activateCart }

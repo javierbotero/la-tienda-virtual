@@ -1,7 +1,18 @@
-<h1>Products</h1>
-<%= render 'form' %>
-<ul class='products'>
-  <% @products.each do |product| %>
-    <li><%= link_to product.title, product_url(product) %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1>Products</h1>
+  <%= render 'form' %>
+  <ul class='row list-unstyled row-cols-1 row-cols-md-2 row-cols-lg-3 g-4'>
+    <% @products.each do |product| %>
+      <li class="col mb-4">
+        <%= link_to product_url(product), class: "card h-100 text-decoration-none text-reset" do %>
+          <img src="<%= product_image(product) %>" class="card-img-top h-50">
+          <div class="card-body fs-1 d-flex flex-column justify-content-center align-items-center">
+            <h4><%= product.title %></h4>
+            <h5>$ <%= product.price %><h5>
+            <span class="card-text"><%= truncate(product.description, length: 100) %></span>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<div>

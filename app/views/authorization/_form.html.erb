@@ -1,9 +1,9 @@
-<%= form_with url: url, scope: :user do |form| %>
+<%= form_with url: url, scope: :user, class: "d-flex flex-column justify-content-center align-items-center" do |form| %>
   <%= form.label :username, 'Username' %>
   <%= form.text_field :username %>
 
   <%= form.label :email, 'Email' %>
   <%= form.text_field :email %>
 
-  <%= form.submit submit %>
+  <%= form.submit submit, class: "btn btn-outline-secondary mt-4" %>
 <% end %>

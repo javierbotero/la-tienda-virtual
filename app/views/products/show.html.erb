@@ -1,31 +1,28 @@
-<div data-controller="product">
+<div data-controller="product" class="container">
   <section class='row'>
-    <div class="carousel col-6">
+    <div class="carousel col-12 col-md-6">
       <%= display_pictures(@product.images) %>
       <%= display_miniatures(@product.images) %>
     </div>
-    <div class="product-info col-6">
+    <div class="product-info col-12 col-md-6 d-flex flex-column justify-content-around align-items-center">
       <h3 class="name"><%= @product.title %><h3>
       <p><%= @product.description %></p>
-      <h3>Price</h3>
-      <div class="d-flex">
+      <div class="d-flex justify-content-around w-50">
         <div>
-          <h4>In stock</h4>
+          <h5>In stock</h5>
           <div class="stock" data-product-target="stock"><%= @product.stock %></div>
         </div>
         <div>
-          <h4>Price</h4>
+          <h5>Price</h5>
           <div class="price" data-product-target="price"><%= @product.price %></div>
         </div>
       </div>
       <%= render 'orders/form_short'  %>
-      <div>
+      <div class="badge bg-secondary mt-3">
         <div data-product-target='message'></div>
         <label>Total</label>
-        <div class="total" data-product-target="total"></div>
+        <div class="total d-inline" data-product-target="total"></div>
       </div>
     </div>
-  </section>
-  <section>
   </section>
 </div>

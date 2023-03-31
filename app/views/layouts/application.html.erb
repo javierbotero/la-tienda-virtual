@@ -10,8 +10,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header>
+  <body class="container-fluid min-vh-100">
+    <header class="bg-warning min-vh-25">
       <% flash.each do |type, message| %>
         <div class="<%= flash_css_classes(type) %>">
           <%= message %>
@@ -19,8 +19,11 @@
       <% end %>
       <%= render "#{@current_user ? 'shared/menu' : 'shared/menu_auth' }" %>
     </header>
-    <nav>
-    </nav>
-    <%= yield %>
+    <main class="bg-light">
+      <%= yield %>
+    </main>
+    <footer class="bg-info min-vh-25 d-flex align-items-center justify-content-center">
+      <%= render 'shared/footer_menu' %>
+    </footer>
   </body>
 </html>

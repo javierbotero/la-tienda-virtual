@@ -19,8 +19,8 @@ export default class extends Controller {
   }
 
   updateTotal() {
-    const total = this.quantityTarget.innerHTML * this.priceTarget.innerHTML;
-    this.totalTarget.innerHTML = total;
+    const total = this.quantityTarget.value * this.priceTarget.innerHTML;
+    this.totalTarget.innerHTML = `$ ${total}`;
   }
 
   increment() {
@@ -31,7 +31,7 @@ export default class extends Controller {
     if (result > parseInt(this.stockTarget.innerHTML)) {
       this.stockErrorTarget.innerHTML = 'Not available quantity';
     } else {
-      this.totalTarget.innerHTML = result * this.priceTarget.innerHTML;
+      this.totalTarget.innerHTML = `$ ${result * this.priceTarget.innerHTML}`;
     }
     this.quantityTarget.value = result;
   }
@@ -46,7 +46,7 @@ export default class extends Controller {
       this.quantityTarget.value = result;
     } else if (result >= 0) {
       this.stockErrorTarget.innerHTML = '';
-      this.totalTarget.innerHTML = result * this.priceTarget.innerHTML;
+      this.totalTarget.innerHTML = `$ ${result * this.priceTarget.innerHTML}`;
       this.quantityTarget.value = result;
     }
   }
@@ -70,7 +70,7 @@ export default class extends Controller {
     } else {
       const message = is_editing ? 'Cart updated' : 'Added to the cart!';
       displayMessage(message, this.messageTarget);
-      if (!is_editing) { activateCart(result_json['order']['user_id'], result_json['order']['id']); }
+      if (!is_editing) { activateCart(); }
     }
   }
 

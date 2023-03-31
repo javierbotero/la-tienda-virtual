@@ -1,9 +1,9 @@
-<ul>
-  <li><%= link_to 'Log out', logout_path %></li>
-  <li><%= link_to 'Products', products_path %></li>
-  <li class="<%= @current_order.present? ? 'd-block' : 'd-none' %>" id="li-cart">
+<ul class="nav justify-content-center">
+  <li class="nav-item"><%= link_to 'Log out', logout_path, class: "nav-link text-secondary" %></li>
+  <li class="nav-item"><%= link_to 'Products', products_path, class: "nav-link text-secondary" %></li>
+  <li class="<%= @current_order.present? ? 'd-block' : 'd-none' %> nav-item" id="li-cart">
     <% if @current_order.present? %>
-      <%= link_to('Cart', user_order_path(@current_user, @current_order)) %>
+      <%= link_to('Cart', products_path, class: "nav-link text-secondary") %>
     <% end %>
   </li>
 </ul>

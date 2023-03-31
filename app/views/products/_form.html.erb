@@ -1,12 +1,14 @@
-<%= form_with url: products_path, scope: :products, class: 'filter-products', method: :get do |form| %>
-  <%= form.label :title, 'By name' %>
-  <%= form.text_field :title %>
+<%= form_with url: products_path, scope: :products, class: 'input-group mt-5 mb-5', method: :get do |form| %>
+  <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+    <%= form.label :title, 'By name', class: "p-2" %>
+    <%= form.text_field :title, placeholder: "Enter a name", class: "form-control" %>
 
-  <%= form.label :min, 'min' %>
-  <%= form.text_field :min %>
+    <%= form.label :min, 'min', class: "p-2" %>
+    <%= form.text_field :min, value: "", placeholder: "min value", class: "form-control" %>
 
-  <%= form.label :max, 'max' %>
-  <%= form.text_field :max %>
+    <%= form.label :max, 'max', class: "p-2" %>
+    <%= form.text_field :max, value: "", placeholder: "max value", class: "form-control" %>
 
-  <%= form.submit 'filter' %>
+    <%= form.submit 'filter', class: "btn btn-outline-secondary" %>
+  </div>
 <% end %>
